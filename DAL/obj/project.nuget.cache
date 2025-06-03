@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "m3MGf0cyF7g=",
+  "dgSpecHash": "NHsMnYMkxGg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\DAL\\DAL.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\arunkumar.thandapani\\Desktop\\Event\\DAL\\DAL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.16\\microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.16\\microsoft.windowsdesktop.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.16\\microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

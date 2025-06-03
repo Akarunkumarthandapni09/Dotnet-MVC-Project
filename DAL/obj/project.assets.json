@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\irfanulla.mohammad\\.nuget\\packages\\": {}
+    "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\arunkumar.thandapani\\Desktop\\Event\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\irfanulla.mohammad\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\DAL\\obj\\",
+      "projectPath": "C:\\Users\\arunkumar.thandapani\\Desktop\\Event\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\arunkumar.thandapani\\Desktop\\Event\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\irfanulla.mohammad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\arunkumar.thandapani\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -43,7 +43,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -59,12 +60,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.16, 8.0.16]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.16, 8.0.16]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.16, 8.0.16]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

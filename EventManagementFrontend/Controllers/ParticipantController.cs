@@ -17,7 +17,7 @@ namespace EventManagementFrontend.Controllers
         public ParticipantController(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new System.Uri("http://localhost:5199/");
+            _httpClient.BaseAddress = new System.Uri("http://localhost:5199/"); // Set API base URL
         }
 
         private bool IsParticipant()
@@ -25,19 +25,41 @@ namespace EventManagementFrontend.Controllers
             return HttpContext.Session.GetString("UserRole") == "Participant";
         }
 
+        private void AddAuthorizationHeader()
+        {
+            var token = HttpContext.Session.GetString("JWToken");
+            if (!string.IsNullOrEmpty(token))
+            {
+                _httpClient.DefaultRequestHeaders.Clear();
+                _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+            }
+        }
+
         // Main participant page showing events and registration status
         public async Task<IActionResult> Index()
         {
             if (!IsParticipant()) return RedirectToAction("Index", "Login");
 
+            AddAuthorizationHeader(); // Add the token to the request headers
+
+            // Fetch events
             var eventsResponse = await _httpClient.GetAsync("api/EventDetails");
             var events = new List<EventDetails>();
             if (eventsResponse.IsSuccessStatusCode)
             {
                 var eventsJson = await eventsResponse.Content.ReadAsStringAsync();
                 events = JsonSerializer.Deserialize<List<EventDetails>>(eventsJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                if (events == null || !events.Any())
+                {
+                    ViewBag.Error = "No events found.";
+                }
+            }
+            else
+            {
+                ViewBag.Error = "Failed to fetch events from API.";
             }
 
+            // Fetch sessions
             var sessionsResponse = await _httpClient.GetAsync("api/SessionInfo");
             var sessions = new List<SessionInfo>();
             if (sessionsResponse.IsSuccessStatusCode)
@@ -45,7 +67,12 @@ namespace EventManagementFrontend.Controllers
                 var sessionsJson = await sessionsResponse.Content.ReadAsStringAsync();
                 sessions = JsonSerializer.Deserialize<List<SessionInfo>>(sessionsJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             }
+            else
+            {
+                ViewBag.Error = "Failed to fetch sessions from API.";
+            }
 
+            // Fetch participant registrations
             var participantRegsResponse = await _httpClient.GetAsync("api/ParticipantEventDetails");
             var registrations = new List<ParticipantEventDetails>();
             if (participantRegsResponse.IsSuccessStatusCode)
@@ -53,7 +80,12 @@ namespace EventManagementFrontend.Controllers
                 var regsJson = await participantRegsResponse.Content.ReadAsStringAsync();
                 registrations = JsonSerializer.Deserialize<List<ParticipantEventDetails>>(regsJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             }
+            else
+            {
+                ViewBag.Error = "Failed to fetch registrations from API.";
+            }
 
+            // Pass data to the view
             ViewBag.Sessions = sessions;
             ViewBag.Registrations = registrations;
             ViewBag.UserEmail = HttpContext.Session.GetString("EmailId");
@@ -71,6 +103,9 @@ namespace EventManagementFrontend.Controllers
         {
             if (!IsParticipant()) return RedirectToAction("Index", "Login");
 
+            AddAuthorizationHeader(); // Add the token to the request headers
+
+            // Fetch event details by eventId
             var eventResponse = await _httpClient.GetAsync($"api/EventDetails/{eventId}");
             if (!eventResponse.IsSuccessStatusCode)
             {
@@ -101,6 +136,8 @@ namespace EventManagementFrontend.Controllers
 
             var json = JsonSerializer.Serialize(registration);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            AddAuthorizationHeader(); // Add the token to the request headers
 
             var response = await _httpClient.PostAsync("api/ParticipantEventDetails", content);
             if (response.IsSuccessStatusCode)

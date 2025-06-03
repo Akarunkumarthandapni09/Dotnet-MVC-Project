@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\EventManagement\\EventManagement.csproj": {}
+    "C:\\Users\\arunkumar.thandapani\\Desktop\\dotnet training case studies\\Dotnet Training-Case Studies\\Mvc\\EventManagement\\EventManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\EventManagement\\EventManagement.csproj": {
+    "C:\\Users\\arunkumar.thandapani\\Desktop\\dotnet training case studies\\Dotnet Training-Case Studies\\Mvc\\EventManagement\\EventManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\EventManagement\\EventManagement.csproj",
+        "projectUniqueName": "C:\\Users\\arunkumar.thandapani\\Desktop\\dotnet training case studies\\Dotnet Training-Case Studies\\Mvc\\EventManagement\\EventManagement.csproj",
         "projectName": "EventManagement",
-        "projectPath": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\EventManagement\\EventManagement.csproj",
-        "packagesPath": "C:\\Users\\irfanulla.mohammad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\irfanulla.mohammad\\Downloads\\Event\\EventManagement\\obj\\",
+        "projectPath": "C:\\Users\\arunkumar.thandapani\\Desktop\\dotnet training case studies\\Dotnet Training-Case Studies\\Mvc\\EventManagement\\EventManagement.csproj",
+        "packagesPath": "C:\\Users\\arunkumar.thandapani\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arunkumar.thandapani\\Desktop\\dotnet training case studies\\Dotnet Training-Case Studies\\Mvc\\EventManagement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\irfanulla.mohammad\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\arunkumar.thandapani\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -37,11 +37,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -78,11 +79,14 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,10 +1,11 @@
 using EventManagement.Model;
 using EventManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceLayer.Controllers
 {
+    
     [Route("api/SpeakersDetails")]
     [ApiController]
     public class SpeakersDetailsController : ControllerBase
@@ -17,6 +18,7 @@ namespace ServiceLayer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Participant")]
         public IActionResult GetAll()
         {
             return Ok(_repo.GetAll());
@@ -31,6 +33,7 @@ namespace ServiceLayer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(SpeakersDetails speaker)
         {
             _repo.Add(speaker);
@@ -39,6 +42,7 @@ namespace ServiceLayer.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(int id, SpeakersDetails speaker)
         {
             if (id != speaker.SpeakerId) return BadRequest();
@@ -48,6 +52,7 @@ namespace ServiceLayer.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _repo.Delete(id);
