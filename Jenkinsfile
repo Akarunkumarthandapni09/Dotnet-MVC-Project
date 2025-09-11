@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        dotnet 'dotnet6'   
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -12,27 +8,38 @@ pipeline {
             }
         }
 
+        stage('Install .NET') {
+            steps {
+                sh '''
+                    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+                    bash dotnet-install.sh --channel 6.0 --install-dir $HOME/dotnet
+                    export PATH=$HOME/dotnet:$PATH
+                    dotnet --version
+                '''
+            }
+        }
+
         stage('Restore') {
             steps {
-                sh 'dotnet restore Event.sln'
+                sh '$HOME/dotnet/dotnet restore Event.sln'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'dotnet build Event.sln --configuration Release'
+                sh '$HOME/dotnet/dotnet build Event.sln --configuration Release'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'dotnet test Event.sln --no-build --verbosity normal'
+                sh '$HOME/dotnet/dotnet test Event.sln --no-build --verbosity normal'
             }
         }
 
         stage('Publish') {
             steps {
-                sh 'dotnet publish Event.sln -c Release -o publish_output'
+                sh '$HOME/dotnet/dotnet publish Event.sln -c Release -o publish_output'
             }
         }
     }
