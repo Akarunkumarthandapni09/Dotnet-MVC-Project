@@ -8,16 +8,6 @@ pipeline {
             }
         }
 
-        stage('Install .NET 9 SDK') {
-            steps {
-                bat '''
-                powershell -Command "Invoke-WebRequest -Uri https://download.visualstudio.microsoft.com/download/pr/ffb5f67a-09a0-44d8-ae6d-9c9d81c2e5a4/9a6cc7984b52eec60a3b5f5b62bfb367/dotnet-sdk-9.0.100-preview-win-x64.exe -OutFile dotnet-sdk-9.exe"
-                start /wait dotnet-sdk-9.exe /quiet /norestart
-                dotnet --version
-                '''
-            }
-        }
-
         stage('Restore') {
             steps {
                 bat 'dotnet restore Event.sln'
