@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        dotnet 'dotnet6'   // Make sure you configure .NET 6 in Jenkins: Manage Jenkins → Global Tool Configuration
+        dotnet 'dotnet6'   
     }
 
     stages {
